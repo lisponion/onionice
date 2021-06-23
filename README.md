@@ -59,9 +59,9 @@ sendstr("rem"+chr(0)+"abc")
 ```
 
 ## nosql
-
+```text
 use ascii char #\Nul
-
+```
 ```text
 set [timeout,key,val]
     timeout 0  is without timeout   
@@ -124,10 +124,21 @@ send:
 back: 
 ```
 ```text
-❎
-"math"   
-"more"    
-"less"    
-
+math [timeout,key,val]
+    the val type is number
+send: "math\x000\x00654\x00321"
+back: "0[onionice✅]:t\r\n"
+```
+```text
+more [key]
+    the value +1
+send: "more\x00654"
+back: "322\r\n"
+```
+```text
+less [key]
+    the value -1
+send: "less\x00654"
+back: "321\r\n"
 ```
 
