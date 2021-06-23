@@ -60,27 +60,30 @@ sendstr("rem"+chr(0)+"abc")
 
 ## nosql
 
-```
 use ascii char #\Nul
 
+```text
 set [timeout,key,val]
     timeout 0  is without timeout   
             60 is with a minute timeout  
     key and val is string
 send: "set\x0020\x00abc\x00def"
 back: "0[onionice✅]:t\r\n"
-
+```
+```text
 let [timeout0,key0,val0,timeout1,key1,val1,timeout2,key2,val2,......]
     set multi kv at once
 send: "let\x000\x00123\x00456\x000\x00231\x00564\x000\x00312\x00645"
 back: "0[onionice✅]:t\r\n"
-
+```
+```text
 get [key]
     get the val in string
     "NIL" means no value
 send: "get\x00123"
 back: "456\r\n"
-
+```
+```text
 got [key0,val0,key1,val1,key3,val3,......]
     got multi val at once
     ......\r\n
@@ -89,22 +92,39 @@ got [key0,val0,key1,val1,key3,val3,......]
     \r\n
 send: "got\x00123\x00231\x00312"
 back: "456\r\n564\r\n645\r\n\r\n"
-
+```
+```text
 del [key]
     delete the key and val
 send: "del\x00123"
 back: "0[onionice✅]:t\r\n"
-
+```
+```text
 rem [key0,val0,key1,val1,key2,val2,......]
     delete multi kv
 send: "rem\x00123\x00231\x00312"
 back: "0[onionice✅]:t\r\n"
-
-"see"
-
-"push"  
-"take"   
-
+```
+```text
+see [] ❎
+    show the information
+send: "see"
+back: "NIL\r\n"
+```
+```text
+push [val]
+    push the value to simple mq
+send: "push\x00123"
+back: "0[onionice✅]:t\r\n"
+```
+```text
+take [] ❎
+    take the value from simple mq
+send: 
+back: 
+```
+```text
+❎
 "math"   
 "more"    
 "less"    
