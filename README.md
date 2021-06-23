@@ -5,6 +5,22 @@
 * libc 
 * libuv
 
+## introduction
+```text
+The name onion-ice is that I think the layers of brackets in lisp are like layers of onion skin, 
+and the volatility of the cache database is like melting ice. 
+
+Functionally, it is used to cache data string, is similar to memcache, 
+but item has no size limit and can store large values. 
+
+Structurally, it uses a single-process single-threaded structure, 
+similar to redis, but oninoice occupies less CPU and memory. 
+Ten million kv occupies 2g of memory, which is one-tenth of the memory used by redis, 
+but onionice is 10 times slower than redis. Onionice's qps is only 20k to 30k, 
+and it is stable at 10k for a large number of connections, while redis is 100k. :(
+
+In summary, onionice is a stable and slow cache
+```
 ## start server
 
 ```bash
