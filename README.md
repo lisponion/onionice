@@ -134,14 +134,15 @@ send: "push\x00123"
 back: "0[onionice✅]:t\r\n"
 ```
 ```text
-take [] ❎
+take [] 
     take the value from simple mq
-send: 
-back: 
+send: "take\x00"
+back: "123\r\n"
 ```
 ```text
 math [timeout,key,val]
     the val type is number
+    can use get to get the val
 send: "math\x000\x00654\x00321"
 back: "0[onionice✅]:t\r\n"
 ```
