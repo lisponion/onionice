@@ -10,19 +10,18 @@
 The name onion-ice is that I think the layers of brackets in lisp are like layers of onion skin, 
 and the volatility of the cache database is like melting ice. 
 
-Functionally, it is used to cache data string, is similar to memcache, 
-but item has no size limit and can store large values. 
+Functionally, it is used to cache k-v data string, is similar to memcache, 
+but item has no size limit and can store large values. [key:val(timeout)]
 
 Structurally, it uses a single-process single-threaded structure, 
 similar to redis, but oninoice occupies less CPU and memory. 
 Ten million kv occupies 2g of memory, which is one-tenth of the memory used by redis, 
 but onionice is 10 times slower than redis. onionice's qps is only 20k to 30k, 
-and it is stable at 10k for a large number of connections, while redis is 100k.
+and it is stable at 10k qps for a large number of connections, while redis is 100k.
 
 In summary, onionice is a stable and slow cache
 ```
 ## start server
-
 ```bash
 # local ipv4 6666
 ./onionice
@@ -38,7 +37,6 @@ In summary, onionice is a stable and slow cache
 ```
 
 ## connect
-
 ```python
 import socket
 
@@ -159,3 +157,29 @@ send: "less\x00654"
 back: "321\r\n"
 ```
 
+## package
+[the-queue](http://sbcl.org/manual/index.html#Queue)
+```common-lisp
+(defglobal the-mq (make-queue))
+
+(enqueue "123" the-mq)
+
+(dequeue the-mq)
+```
+[event-loop](https://github.com/orthecreedence/cl-async)
+```common-lisp
+(defun abc ()
+    ...)
+    
+(as:start-event-loop #'abc)
+```
+[handle-string](https://github.com/sharplispers/split-sequence)
+```common-lisp
+(split-sequence #\Nul "123")
+```
+[hash-table](https://github.com/diogoalexandrefranco/cl-cache-tables)
+```common-lisp
+(setf the-cache-table (cache:make-cache-table :test #'equal))
+
+(cache:cache-table-put "key0" "value0" *cache* :expire 0)
+```
