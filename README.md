@@ -169,7 +169,7 @@ back: "321\r\n"
 [event-loop](https://github.com/orthecreedence/cl-async)
 ```common-lisp
 (defun abc ()
-    ...)
+    ......)
     
 (as:start-event-loop #'abc)
 ```
