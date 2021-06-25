@@ -2,8 +2,8 @@
 
 ## require
 
-* libc 
-* libuv
+* libc >= 2012-12-25
+* libuv >= [1.0](https://github.com/orthecreedence/cl-async/blob/795c4aaa8fb13c5cfba78f3695c1297457202361/README.md#:~:text=NOTE%3A%20cl-async%20uses%20the%20v1.x%20branch%20of%20libuv%2C%20so%20make%20sure%20to%20grab%20that%20version%20of%20it%20(not%20the%20v0.10.x%20branch).)
 
 ## introduction
 ```text
