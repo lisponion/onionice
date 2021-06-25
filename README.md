@@ -67,13 +67,11 @@ def sendstr (str):
 
 makeclient()
 
-message0 = chr(0).join(["set","0","abc","xyz"])
-sendstr(message0)
+sendstr(chr(0).join(["set","0","abc","xyz"]))
 
-message1 = chr(0).join(["get","abc"])
-sendstr(message1)
+sendstr(chr(0).join(["get","abc"]))
 
-sendstr("rem"+chr(0)+"abc")
+sendstr(chr(0).join(["del","abc"]))
 ```
 
 ## nosql
@@ -180,8 +178,8 @@ back: "0[onionice✅]:t\r\n"
 ```text
 read [path] ❎
     quick read the text string from file
-send: 
-back: 
+send: "read\x00/home/abc/abc.txt"
+back: "123\n\r\n"
 ```
 
 ## package
