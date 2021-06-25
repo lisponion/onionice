@@ -23,6 +23,10 @@ In summary, onionice is a stable and slow cache
 ```
 ## start server
 ```bash
+# onionice [addr] [port]
+# onionice is transmitted in plain text and is not secure
+# please use it on your local network
+
 # local ipv4 6666
 ./onionice
 
@@ -120,10 +124,10 @@ send: "rem\x00123\x00231\x00312"
 back: "0[onionice✅]:t\r\n"
 ```
 ```text
-see [] ❎
+see [] 
     show the information
 send: "see"
-back: "NIL\r\n"
+back: ......
 ```
 ```text
 push [val]
@@ -156,6 +160,27 @@ less [key]
 send: "less\x00654"
 back: "321\r\n"
 ```
+```text
+save [path]
+    save all kv to file path by override 
+    will take long when many data
+send: "save\x00~/onion.ice"
+back: "0[onionice✅]:t\r\n"
+```
+
+```text
+lode [path]
+    load all kv from the file path
+send: "load\x00~/onion.ice"
+back: "0[onionice✅]:t\r\n"
+```
+
+```text
+read [path] ❎
+    quick read the text string from file
+send: 
+back: 
+```
 
 ## package
 [the-queue](http://sbcl.org/manual/index.html#Queue)
@@ -182,4 +207,12 @@ back: "321\r\n"
 (setf the-cache-table (cache:make-cache-table :test #'equal))
 
 (cache:cache-table-put "key0" "value0" *cache* :expire 0)
+```
+[cl-store](https://github.com/skypher/cl-store)
+```common-lisp
+;the-cache-table
+
+(store the-cache-table "~/data")
+
+(setf the-cache-table (restore "~/data"))
 ```
