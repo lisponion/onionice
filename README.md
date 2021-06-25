@@ -21,14 +21,13 @@ Ten million kv occupies 2g of memory, which is one-tenth of the memory used by r
 but onionice is 10 times slower than memcached. onionice's qps is only 20k to 30k, 
 and it is stable at 10k qps for a large number of connections, while memcached is 100k.
 
-In summary, onionice is a stable and slow cache
+In summary, onionice is a single node, stable and slow cache
 
 it can use as __ with __ for example __ :
     kv-cache-db     [set,get,rem]       promotional goods information
     number-counter  [math,more,less]    number of hot goods sold
     message-queue   [push,take]         aynchronous message
     text-reader     [read]              quick read the text string in file
-    
 ```
 
 ## start server
@@ -325,7 +324,7 @@ def runtest():
     time0 = time.time()
     for i in range(100000):
       a = str(i)
-      theset("0",a,a)
+      theset("0",a,a) #"0" is the kv without timeout
     time1 = time.time()
     print("100000set: ", time1 - time0)
     time2 = time.time()
@@ -340,8 +339,3 @@ makeclient()
 # test for onionice
 runtest() 
 ```
-
-
-
-
-
