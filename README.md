@@ -21,6 +21,7 @@ and it is stable at 10k qps for a large number of connections, while redis is 10
 
 In summary, onionice is a stable and slow cache
 ```
+
 ## start server
 ```bash
 # onionice [addr] [port]
@@ -119,7 +120,7 @@ back: "0[onionice✅]:t\r\n"
 ```
 ```text
 rem [key0,val0,key1,val1,key2,val2,......]
-    delete multi kv
+    remove multi kv
 send: "rem\x00123\x00231\x00312"
 back: "0[onionice✅]:t\r\n"
 ```
@@ -167,16 +168,14 @@ save [path]
 send: "save\x00~/onion.ice"
 back: "0[onionice✅]:t\r\n"
 ```
-
 ```text
 load [path]
     load all kv from the file path
 send: "load\x00~/onion.ice"
 back: "0[onionice✅]:t\r\n"
 ```
-
 ```text
-read [path] ❎
+read [path] 
     quick read the text string from file
 send: "read\x00/home/abc/abc.txt"
 back: "123\n\r\n"
@@ -215,4 +214,10 @@ back: "123\n\r\n"
 (store the-cache-table "~/data")
 
 (setf the-cache-table (restore "~/data"))
+```
+[mmap](https://github.com/Shinmera/mmap)
+```common-lisp
+(with-mmap (addr fd size file-path)
+  (with-output-to-string (out)
+    (......
 ```
