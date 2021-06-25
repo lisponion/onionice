@@ -24,7 +24,7 @@ In summary, onionice is a stable and slow cache
 ## start server
 ```bash
 # onionice [addr] [port]
-# onionice is transmitted in plain text and is not secure
+# it is transmitted in plain text and is not secure
 # please use it on your local network
 
 # local ipv4 6666
@@ -79,6 +79,8 @@ sendstr("rem"+chr(0)+"abc")
 ## nosql
 ```text
 use ascii char #\Nul
+
+the hash-table and message-queue is thread-safety
 ```
 ```text
 set [timeout,key,val]
@@ -169,7 +171,7 @@ back: "0[onionice✅]:t\r\n"
 ```
 
 ```text
-lode [path]
+load [path]
     load all kv from the file path
 send: "load\x00~/onion.ice"
 back: "0[onionice✅]:t\r\n"
