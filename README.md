@@ -237,7 +237,7 @@ back: "123\n\r\n"
 import pymemcache
 import time
 
-mc = pymemcache.Client(('127.0.0.1','12000'))
+mc = pymemcache.Client(('127.0.0.1','11211'))
 
 def runtest():
     time0 = time.time()
