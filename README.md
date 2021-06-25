@@ -10,16 +10,25 @@
 The name onion-ice is that I think the layers of brackets in lisp are like layers of onion skin, 
 and the volatility of the cache database is like melting ice. 
 
-Functionally, it is used to cache k-v data string, is similar to memcache, 
-but item has no size limit and can store large values. [key:val(timeout)]
+Functionally, it is used to cache k-v data string, is similar to memcached, 
+but item has no size limit it can store large values. [key:val(timeout)]
+and it can save all kv to file on computer disk.
 
 Structurally, it uses a single-process single-threaded structure, 
 similar to redis, but oninoice occupies less CPU and memory. 
-Ten million kv occupies 2g of memory, which is one-tenth of the memory used by redis, 
-but onionice is 10 times slower than redis. onionice's qps is only 20k to 30k, 
-and it is stable at 10k qps for a large number of connections, while redis is 100k.
+Ten million kv occupies 2g of memory, which is one-tenth of the memory used by redis.
+
+but onionice is 10 times slower than memcached. onionice's qps is only 20k to 30k, 
+and it is stable at 10k qps for a large number of connections, while memcached is 100k.
 
 In summary, onionice is a stable and slow cache
+
+it can use as __ with __ for example __ :
+    kv-cache-db     [set,get,rem]       promotional goods information
+    number-counter  [math,more,less]    number of hot goods sold
+    message-queue   [push,take]         aynchronous message
+    text-reader     [read]              quick read the text string in file
+    
 ```
 
 ## start server
@@ -221,3 +230,118 @@ back: "123\n\r\n"
   (with-output-to-string (out)
     (......
 ```
+
+## test
+```python3
+#!/usr/bin/python3
+
+import pymemcache
+import time
+
+mc = pymemcache.Client(('127.0.0.1','12000'))
+
+def runtest():
+    time0 = time.time()
+    for i in range(100000):
+        a = str(i)
+        mc.set(a,a)
+    time1 = time.time()
+    print("100000set: ", time1 - time0)
+    time2 = time.time()
+    for i in range(100000):
+        a = str(i)
+        mc.get(a)
+    time3 = time.time()
+    print("100000get: ", time3 - time2)
+
+# test for memcached
+runtest()
+```
+
+```python3
+#!/usr/bin/python3
+
+import time
+import redis
+
+r = redis.StrictRedis(host='localhost', port=6379, db=0)
+
+def runtest():
+    time0 = time.time()
+    for i in range(100000):
+        a = str(i)
+        r.set(a,a)
+    time1 = time.time()
+    print("100000set: ", time1 - time0)
+    time2 = time.time()
+    for i in range(100000):
+        a = str(i)
+        r.get(a)
+    time3 = time.time()
+    print("100000get: ", time3 - time2)
+
+# test for redis
+runtest()
+```
+
+```python3
+#!/usr/bin/python3
+
+import socket
+import time
+
+def makeclient ():
+   global client
+   client = socket.socket(socket.AF_INET,socket.SOCK_STREAM)
+   client.connect(("127.0.0.1",6666))
+   return 0
+
+def recvall (sock):
+    BUFF_SIZE = 4096
+    msg = b''
+    while True:
+        part = sock.recv(BUFF_SIZE)
+        msg += part
+        if len(part) < BUFF_SIZE:
+            break
+    return msg
+
+def sendstr (str):
+   client.send(str.encode('utf-8'))
+   data = recvall(client)
+   return data.decode()
+
+def theset(str0,str1,str2):
+    message = chr(0).join(["set", str0, str1, str2])
+    sendstring(message)
+    return
+
+def theget(str0):
+    message = chr(0).join(["get", str0])
+    sendstring(message)
+    return
+
+def runtest():
+    time0 = time.time()
+    for i in range(100000):
+      a = str(i)
+      theset("0",a,a)
+    time1 = time.time()
+    print("100000set: ", time1 - time0)
+    time2 = time.time()
+    for i in range(100000):
+      a = str(i)
+      theget(a)
+    time3 = time.time()
+    print("100000get: ", time3 -time2)
+
+makeclient()
+
+# test for onionice
+runtest() 
+```
+
+
+
+
+
