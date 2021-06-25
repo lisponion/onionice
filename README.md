@@ -261,8 +261,8 @@ runtest()
 ```python3
 #!/usr/bin/python3
 
-import time
 import redis
+import time
 
 r = redis.StrictRedis(host='localhost', port=6379, db=0)
 
@@ -313,12 +313,12 @@ def sendstr (str):
 
 def theset(str0,str1,str2):
     message = chr(0).join(["set", str0, str1, str2])
-    sendstring(message)
+    sendstr(message)
     return
 
 def theget(str0):
     message = chr(0).join(["get", str0])
-    sendstring(message)
+    sendstr(message)
     return
 
 def runtest():
