@@ -21,12 +21,16 @@ Ten million kv occupies 2g of memory, which is one-tenth of the memory used by r
 but onionice is 10 times slower than memcached. onionice's qps is only 20k to 30k, 
 and it is stable at 10k qps for a large number of connections, while memcached is 100k.
 
-In terms of security，
+for security，
 memcached is a clear text transmission.
 redis can set a connection password, the transmission content is also clear text. 
 oneonice has encryption function, can perform aes encryption on content 
 
-In summary, onionice is a single node, stable and slow cache
+for thread safety in onionice
+the hash-table and message-queue is thread-safe with :synchronized t
+but box-part provided by the clache package is not thread-safe
+
+In summary, onionice is a single node, stable and slow database
 
 it can use as __ with __ for example __ :
     kv-cache-db     [set,get,rem]       promotional goods information
@@ -278,7 +282,6 @@ back: "1[onionice❎]:pass-mode is off\r\n"
         the-password-array (ironclad:ascii-string-to-byte-array the-password)
         the-cipher (ironclad:make-cipher :aes :mode :ecb :key the-password-array))
 ```
-
 
 ## test
 ```python3
