@@ -32,9 +32,8 @@ it can use as __ with __ for example __ :
 
 ## start server
 ```bash
-# onionice [addr] [port]
-# it is transmitted in plain text and is not secure
-# please use it on your local network
+# onionice [addr] [port] [pass]
+# text string can be encrypted in aes ecb mode 
 
 # local ipv4 6666
 ./onionice
@@ -45,8 +44,8 @@ it can use as __ with __ for example __ :
 # local ipv6 6600
 ./onionice ::1 6600
 
-# other example
-./onionice 66.66.66.66 6666
+# public ipv4 6666 pass
+./onionice 66.66.66.66 6666 6666666666666666
 ```
 
 ## connect
