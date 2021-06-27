@@ -21,6 +21,11 @@ Ten million kv occupies 2g of memory, which is one-tenth of the memory used by r
 but onionice is 10 times slower than memcached. onionice's qps is only 20k to 30k, 
 and it is stable at 10k qps for a large number of connections, while memcached is 100k.
 
+In terms of security，
+memcached is a clear text transmission.
+redis can set a connection password, the transmission content is also clear text. 
+oneonice has encryption function, can perform aes encryption on content 
+
 In summary, onionice is a single node, stable and slow cache
 
 it can use as __ with __ for example __ :
@@ -28,6 +33,7 @@ it can use as __ with __ for example __ :
     number-counter  [math,more,less]    number of hot goods sold
     message-queue   [push,take]         aynchronous message
     text-reader     [read]              quick read the text string in file
+    document-db     [note,view,drop]    personal text document 
 ```
 
 ## start server
@@ -171,7 +177,7 @@ back: "321\r\n"
 ```text
 save [path]
     save all kv to file path by override 
-    will take long when many data
+    will take long time when many data
 send: "save\x00~/onion.ice"
 back: "0[onionice✅]:t\r\n"
 ```
