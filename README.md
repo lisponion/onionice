@@ -346,3 +346,6 @@ makeclient()
 # test for onionice
 runtest() 
 ```
+
+## download
+[newest-version](https://github.com/lisponion/onionice/releases/download/1.0/onionice)
