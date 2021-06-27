@@ -188,6 +188,13 @@ read [path]
 send: "read\x00/home/abc/abc.txt"
 back: "123\n\r\n"
 ```
+```text
+note
+view
+drop
+boom
+pass
+```
 
 ## package
 [the-queue](http://sbcl.org/manual/index.html#Queue)
