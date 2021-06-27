@@ -189,11 +189,37 @@ send: "read\x00/home/abc/abc.txt"
 back: "123\n\r\n"
 ```
 ```text
-note
-view
-drop
-boom
-pass
+note [box0,key0,val0,box1,key1,val1,box2,key2,val2,......]
+    use name of folder  as box 
+    use name of file    as key 
+    use content of file as val 
+send: "note\x00abc\x00def\x00ghi"
+back: "0[onionice✅]:t\r\n"
+```
+```text
+view [box0,key0,box1,key1,box2,key2,......]
+    view the val of the key in box
+send: "view\x00abc\x00def"
+back: "ghi\r\n\r\n"
+```
+```text
+drop [box0,key0,box1,key1,box2,key2,......]
+    drop the key from the box
+send: "drop\x00abc\x00def"
+back: "0[onionice✅]:t\r\n"
+```
+```text
+boom [box]
+    the box will boom
+    drop all the key
+send: "boom\x00abc"
+back: "T\r\n"
+```
+```text
+pass []
+    show the pass info
+send: "pass"
+back: "1[onionice❎]:pass-mode is off\r\n"
 ```
 
 ## package
@@ -238,12 +264,14 @@ pass
 ```
 [clache](https://github.com/html/clache)
 ```common-lisp
-
+(setf the-box (progn (ensure-directories-exist #p"box/")
+                     (make-instance 'file-store :directory #p"box/")))
 ```
-
 [ironclad](https://github.com/sharplispers/ironclad)
 ```common-lisp
-
+(setf   the-password "1111111111111111"
+        the-password-array (ironclad:ascii-string-to-byte-array the-password)
+        the-cipher (ironclad:make-cipher :aes :mode :ecb :key the-password-array))
 ```
 
 
