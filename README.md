@@ -44,16 +44,16 @@ it can use as __ with __ for example __ :
 
 ## start server
 ```bash
-# onionice [addr] [port] [pass]
+# onionice [host] [port] [pass]
 # text string can be encrypted in aes ecb mode 
 
-# local ipv4 6666
+# local ipv4 6666 none
 ./onionice
 
-# local ipv4 6060
+# local ipv4 6060 none
 ./onionice 127.0.0.1 6060
 
-# local ipv6 6600
+# local ipv6 6600 none
 ./onionice ::1 6600
 
 # public ipv4 6666 pass
