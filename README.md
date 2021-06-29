@@ -396,5 +396,5 @@ runtest()
 ```
 
 ## download
-[onionice for amd64](https://github.com/lisponion/onionice/releases/download/1.0/onionice-linux-amd64)
-[onionice for aarch64](https://github.com/lisponion/onionice/releases/download/1.0/onionice-linux-aarch64)
+[onionice for amd64](https://github.com/lisponion/onionice/releases/download/1.0/onionice-linux-amd64)   
+[onionice for arm64](https://github.com/lisponion/onionice/releases/download/1.0/onionice-linux-arm64)   
