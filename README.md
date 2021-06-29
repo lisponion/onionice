@@ -20,7 +20,7 @@ Structurally, it uses a single-process single-threaded structure,
 similar to redis, but oninoice occupies less CPU and memory. 
 Ten million kv occupies 2g of memory, which is one-tenth of the memory used by redis.
 
-but onionice is 10 times slower than memcached. onionice's qps is only 20k to 30k, 
+but onionice is 10 times slower than memcached. onionice's qps is only 20k,
 and it is stable at 10k qps for a large number of connections, while memcached is 100k.
 
 for security，
@@ -98,7 +98,7 @@ sendstr(chr(0).join(["del","abc"]))
 ```text
 use ascii char #\Nul
 
-the hash-table and message-queue is thread-safety
+so the content is not binary safe 
 ```
 ```text
 set [timeout,key,val]
@@ -110,7 +110,7 @@ back: "0[onionice✅]:t\r\n"
 ```
 ```text
 let [timeout0,key0,val0,timeout1,key1,val1,timeout2,key2,val2,......]
-    set multi kv at once
+    let multi kv at once
 send: "let\x000\x00123\x00456\x000\x00231\x00564\x000\x00312\x00645"
 back: "0[onionice✅]:t\r\n"
 ```
@@ -145,7 +145,7 @@ back: "0[onionice✅]:t\r\n"
 ```
 ```text
 see [] 
-    show the information
+    see the information
 send: "see"
 back: ......
 ```
