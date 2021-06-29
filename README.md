@@ -27,7 +27,8 @@ for security，
 memcached is a clear text transmission.
 redis can set a connection password, the transmission content is also clear text. 
 oneonice has encryption function, can perform aes encryption on content.
-for 128 or 192 or 256 bit use 16 or 24 or 32 length ascii char string as password.
+for 128 or 192 or 256 bit aes-ecb use 16 or 24 or 32 length ascii char string as password.
+security is still flawed 
 
 for thread safety in onionice
 the hash-table and message-queue is thread-safe with :synchronized t
