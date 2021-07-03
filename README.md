@@ -18,7 +18,7 @@ and it can save all kv to file on computer disk.
 
 Structurally, it uses a single-process single-threaded structure, 
 similar to redis, but oninoice occupies less CPU and memory. 
-Ten million kv occupies 2g of memory, which is one-tenth of the memory used by redis.
+Ten million kv occupies 2g of memory, new version use more memory.
 
 but onionice is 10 times slower than memcached. onionice's qps is only 20k,
 and it is stable at 10k qps for a large number of connections, while memcached is 100k.
